@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   # GET /posts
   # GET /posts.json
   def index
@@ -19,13 +19,19 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+     tag_titles = @post.tags.map {|tag| tag.title }
+     @post.tag_titles = tag_titles.join(',')
   end
 
   # POST /posts
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-
+    @post = current_user.posts.new(post_params)
+    tags = get_tags(post_params[:tag_titles], ',')
+    tags.each do |tag|
+      @post.tags << tag
+    end
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -41,6 +47,12 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
+      return head(:forbidden) unless @post.user == current_user
+      tags = get_tags(post_params[:tag_titles], ',')
+      @post.tags.clear
+      tags.each do |tag|
+        @post.tags << tag
+      end
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
@@ -56,12 +68,23 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
+       return head(:forbidden) unless @post.user == current_user
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+    def get_tags(str, delim)
+      titles = str.split(delim)
+      tags = []
+      titles.each do |title|
+        title.strip!
+        next unless title && title.length # we don't want to add blank tags
+        tags << Tag.where(title: title).first_or_create
+      end
+      return tags
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
@@ -69,6 +92,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, :username, :string)
+      params.require(:post).permit(:title, :body, :username, :string, :tag_titles)
     end
 end
