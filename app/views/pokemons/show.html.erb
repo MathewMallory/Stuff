@@ -4,36 +4,36 @@
   <%= link_to(@pokemon.title, @pokemon.link) %>
 </p>
 
-<p>
+<p class="Edit_H">
   <strong>Health:</strong>
   <%= @pokemon.health %>
 </p>
 
-<p>
+<p class="Edit_A">
   <strong>Attack:</strong>
   <%= @pokemon.attack %>
 </p>
 
-<p>
+<p class="Edit_D">
   <strong>Defense:</strong>
   <%= @pokemon.defense %>
 </p>
 
-<p>
-  <strong>Special attack:</strong>
+<p class="Edit_SA">
+  <strong>Sp.Atk:</strong>
   <%= @pokemon.special_attack %>
 </p>
 
-<p>
-  <strong>Special defense:</strong>
+<p class="Edit_SD">
+  <strong>Sp.Def:</strong>
   <%= @pokemon.special_defense %>
-</p>
+</p class="Edit_Stats">
 
-<p>
+<p class="Edit_S">
   <strong>Speed:</strong>
   <%= @pokemon.speed %>
 </p>
 
 
-<%= link_to 'Edit', edit_pokemon_path(@pokemon) %> |
-<%= link_to 'Back', pokemons_path %>
+<%= link_to 'Edit', edit_pokemon_path(@pokemon), class: 'QQ' %> |
+<%= link_to 'Back', pokemons_path, class: 'QQ' %>

@@ -29,6 +29,7 @@ a, a:link {
 
 a:hover {
   color: #888;
+  background-color: red;
 }
 
 .navbar {
@@ -122,18 +123,57 @@ h1{
   color:#FF7F3F;
 }
 .d{
-  color:#FFFF3F;
+  color:#e7df21;
 }
 .sa{
-  color:#f87373;
+  color:#007FFF;
 }
 .sd{
-  color:#f87373;
+  color:#7FFF7F;
 }
 .s{
-  color:#f87373;
+  color:#FA92B2;
 }
 .stats{
   color:#000000;
 }
 
+strong{
+  color: #000000;
+}
+.content p a{
+  color: #000000;
+}
+.content table tbody tr td a{
+  color: #000000;
+}
+.Edit_H{
+  color:#FF0000;
+}
+.Edit_A{
+  color:#FF7F3F;
+}
+.Edit_D{
+  color:#e7df21;
+}
+.Edit_SA{
+  color:#007FFF;
+}
+.Edit_SD{
+  color:#7FFF7F;
+}
+.Edit_S{
+  color:#FA92B2;
+}
+a.QQ{
+  color:#000000;
+  &:hover {
+    background-color: red;
+  }
+}
+.login-links a{
+  color:#000000;
+}
+.field{
+  color:#000000;
+}
