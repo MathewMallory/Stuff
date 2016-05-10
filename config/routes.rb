@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  resources :pokemons
   resources :tags
   devise_for :users
   ActiveAdmin.routes(self)
 
   resources :posts
-  root 'posts#index'
+   get '/tags/:id/posts', to: 'posts#by_tag', as: 'posts_by_tag'
+  root 'pokemons#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

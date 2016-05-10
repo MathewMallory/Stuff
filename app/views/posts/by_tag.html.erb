@@ -1,0 +1,18 @@
+<h1>Posts tagged "<%= @tag.title%>"</h1>
+
+<% if @posts.empty? %>
+  <p>No posts found.</p>
+<% else %>
+  <% @posts.each do |post| %>
+    <p>
+      <h3><%= post.title %> by <%= post.user.email %></h3>    
+      <p><%= post.body %></p>
+      <strong>Tags</strong>
+      <ul>
+        <% post.tags.each do |tag| %>
+          <li><%= tag.title %></li>
+        <% end %>
+      </ul>
+    </p>
+  <% end %>
+<% end %>

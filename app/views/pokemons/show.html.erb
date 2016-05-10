@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Name:</strong>
+  <%= link_to(@pokemon.title, @pokemon.link) %>
+</p>
+
+<p>
+  <strong>Health:</strong>
+  <%= @pokemon.health %>
+</p>
+
+<p>
+  <strong>Attack:</strong>
+  <%= @pokemon.attack %>
+</p>
+
+<p>
+  <strong>Defense:</strong>
+  <%= @pokemon.defense %>
+</p>
+
+<p>
+  <strong>Special attack:</strong>
+  <%= @pokemon.special_attack %>
+</p>
+
+<p>
+  <strong>Special defense:</strong>
+  <%= @pokemon.special_defense %>
+</p>
+
+<p>
+  <strong>Speed:</strong>
+  <%= @pokemon.speed %>
+</p>
+
+
+<%= link_to 'Edit', edit_pokemon_path(@pokemon) %> |
+<%= link_to 'Back', pokemons_path %>

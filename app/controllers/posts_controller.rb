@@ -74,6 +74,12 @@ class PostsController < ApplicationController
     end
   end
 
+# GET /tag/:id/posts - this comment helps you to remember which URL will map to this method
+  def by_tag
+    @tag = Tag.find(params[:id]) # remember, find will raise an error if the record is not found
+    @posts = @tag.posts # get a list of all that tag's posts
+  end
+
   private
     def get_tags(str, delim)
       titles = str.split(delim)

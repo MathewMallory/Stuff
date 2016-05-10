@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322205626) do
+ActiveRecord::Schema.define(version: 20160503223521) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -37,6 +37,19 @@ ActiveRecord::Schema.define(version: 20160322205626) do
 
   add_index "categorizations", ["post_id"], name: "index_categorizations_on_post_id"
   add_index "categorizations", ["tag_id"], name: "index_categorizations_on_tag_id"
+
+  create_table "pokemons", force: :cascade do |t|
+    t.integer  "health"
+    t.integer  "attack"
+    t.integer  "defense"
+    t.integer  "special_attack"
+    t.integer  "special_defense"
+    t.integer  "speed"
+    t.string   "title"
+    t.string   "link"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
